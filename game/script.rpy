@@ -5,7 +5,9 @@ init python:
 
 #Add more names and species as you like, as long as you follow the
 #array conventions + each species being paired with its own habitat
+#AND ALSO ADD AN APPROPRIATE IMAGE SET TO THE IMAGES FOLDER THANKS
 define name_list = ["Bob", "Jessica", "Maria", "Shadow"]
+
 #use "none" in habitat to mark as nonliving please and thank you :)
 define species_list = ["hedgehog", "cheetah", "rock", "polar bear", "parrot"]
 define habitat_list = ["forest", "savannah", "none", "arctic", "jungle"]
@@ -35,7 +37,7 @@ label start:
         # add a file (named either "bg room.png" or "bg room.jpg") to the
         # images directory to show it.
 
-        scene bg room
+        scene office
 
         # This shows a character sprite. A placeholder is used, but you can
         # replace it by adding a file named "eileen happy.png" to the images
@@ -87,6 +89,7 @@ label start:
                         jump incorrect_room
 
                     else:
+                        scene habitat_sprite
                         show patient_happy
                         patient "This is perfect, thank you!"
 
@@ -95,6 +98,7 @@ label start:
                         jump incorrect_room
 
                     else:
+                        scene habitat_sprite
                         show patient_happy
                         patient "Oh yeah! I like it here."
 
@@ -103,6 +107,7 @@ label start:
                         jump incorrect_room
 
                     else:
+                        scene habitat_sprite
                         show patient_happy
                         patient "It's so chilly here, just how I like it!"
 
@@ -111,6 +116,7 @@ label start:
                         jump incorrect_room
 
                     else:
+                        scene habitat_sprite
                         show patient_happy
                         patient "Perfect! This is what I needed!"
 
