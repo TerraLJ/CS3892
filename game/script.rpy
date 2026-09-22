@@ -1,32 +1,118 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+init python:
+    import random
 
-define e = Character("Eileen")
+#Add more names and species as you like, as long as you follow the
+#array conventions + each species being paired with its own habitat
+define name_list = ["Bob", "Jessica", "Maria", "Shadow"]
+#use "none" in habitat to mark as nonliving please and thank you :)
+define species_list = ["hedgehog", "cheetah", "rock", "polar bear", "parrot"]
+define habitat_list = ["forest", "savannah", "none", "arctic", "jungle"]
 
-
-# The game starts here.
+#generic stuff
+default patient_index = -1
+default species = ""
+default habitat = ""
+default name_index = 0
+default patient = Character(name = "placeholder", color = "#ffffff")
 
 label start:
+    #these automatically account for different list sizes so do NOT change
+    label generate_patient:
+        if (patient_index == -1):
+            $ patient_index = renpy.random.randint(0, len (species_list) - 1)
+            $ species = species_list [patient_index]
+            $ habitat = habitat_list [patient_index]
+            $ name_index = renpy.random.randint(0, len (name_list) - 1)
+            $ patient = Character(name = name_list [name_index], color = "#ffffff")
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+        jump patient_entry
 
-    scene bg room
+    label patient_entry:
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+        # Show a background. This uses a placeholder by default, but you can
+        # add a file (named either "bg room.png" or "bg room.jpg") to the
+        # images directory to show it.
 
-    show eileen happy
+        scene bg room
 
-    # These display lines of dialogue.
+        # This shows a character sprite. A placeholder is used, but you can
+        # replace it by adding a file named "eileen happy.png" to the images
+        # directory.
 
-    e "You've created a new Ren'Py game."
+        show patient_neutral
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+        # These display lines of dialogue.
+
+        patient "Hello! I would like to get checked in, please."
+
+        "Time to fill out the paperwork!"
+        
+        label living_or_not:
+            menu:
+                "First, is the patient a living animal?"
+
+                "Yes!":
+                    if habitat == "none":
+                        #Add different flavor text here later
+                        show patient_confused
+                        patient "Hm... that doesn't feel right..."
+                        jump living_or_not
+
+                    else:
+                        show patient_happy
+                        patient "Yep, that's right!"
+
+                "No!":
+                    if habitat != "none":
+                        #Add different flavor text here later
+                        show patient_confused
+                        patient "Hm... I'm not sure that's the case..."
+                        jump living_or_not
+
+                    else:
+                        show patient_happy
+                        patient "Oh yeah! I'm not an animal. Silly me."
+                        $ patient_index = -1
+                        jump generate_patient
+
+        label which_room:
+            show patient_neutral
+            menu:
+                "Next, which habitat would best fit our patient?"
+
+                "Forest!":
+                    if habitat != "forest":
+                        jump incorrect_room
+
+                    else:
+                        show patient_happy
+                        patient "This is perfect, thank you!"
+
+                "Savannah!":
+                    if habitat != "savannah":
+                        jump incorrect_room
+
+                    else:
+                        show patient_happy
+                        patient "Oh yeah! I like it here."
+
+                "Arctic!":
+                    if habitat != "arctic":
+                        jump incorrect_room
+
+                    else:
+                        show patient_happy
+                        patient "It's so chilly here, just how I like it!"
+
+                "Jungle!":
+                    if habitat != "jungle":
+                        jump incorrect_room
+
+                    else:
+                        show patient_happy
+                        patient "Perfect! This is what I needed!"
 
     # This ends the game.
 
