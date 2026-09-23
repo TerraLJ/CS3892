@@ -1,6 +1,8 @@
 init python:
     import random
 
+    medicine_list = []
+
     #class for all the illnesses
     class Species():
         # constructor
@@ -16,6 +18,8 @@ init python:
             self.actualCondition = actualCondition
             self.condition = condition
             self.medicine = medicine
+
+            medicine_list.append (self.medicine)
 
 #Add more names and species as you like, as long as you follow the
 #array conventions + each species being paired with its own habitat
@@ -48,7 +52,7 @@ define illness_list = [
     Illnesses ("parrot", True, "injured wing", "TBD")
     ]
 
-#Patient generation
+#Patient generation. setting up generic variables do NOT touch
 default patient_index = -1
 default species = ""
 default habitat = ""
@@ -58,8 +62,10 @@ default illness_species = "generic"
 default illness = ""
 default actualCondition = True
 default medicine = ""
+default medicine_index = 0
 
 #these automatically account for different list sizes so do NOT change
+#if you touch these i will Cry
 label generate_patient:
     if (patient_index == -1):
         $ patient_index = renpy.random.randint(0, len(species_list) - 1)
@@ -68,10 +74,16 @@ label generate_patient:
         $ name_index = renpy.random.randint(0, len (name_list) - 1)
         $ patient = Character(name = name_list [name_index], color = "#ffffff")
 
-        $ illness_index = renpy.random.randint(0, len(illness_list) - 1)
-        $ illness_species = illness_list[illness_index].species
-        $ illness = illness_list[illness_index].condition
-        $ actualCondition = illness_list[illness_index].actualCondition
-        $ medicine = illness_list[illness_index].medicine
+        label reroll_illness:
+            $ illness_index = renpy.random.randint(0, len(illness_list) - 1)
+
+        if (illness_list[illness_index].species == species or illness_list[illness_index].species == "generic"):
+            $ illness_species = illness_list[illness_index].species
+            $ illness = illness_list[illness_index].condition
+            $ actualCondition = illness_list[illness_index].actualCondition
+            $ medicine = illness_list[illness_index].medicine
+
+        else:
+            jump reroll_illness
 
     jump patient_entry
