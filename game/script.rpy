@@ -1,35 +1,9 @@
 ﻿# The script of the game goes in this file.
 
-init python:
-    import random
-
-#Add more names and species as you like, as long as you follow the
-#array conventions + each species being paired with its own habitat
-#AND ALSO ADD AN APPROPRIATE IMAGE SET TO THE IMAGES FOLDER THANKS
-define name_list = ["Bob", "Jessica", "Maria", "Shadow"]
-
-#use "none" in habitat to mark as nonliving please and thank you :)
-define species_list = ["hedgehog", "cheetah", "rock", "polar bear", "parrot"]
-define habitat_list = ["forest", "savannah", "none", "arctic", "jungle"]
-
-#generic stuff
-default patient_index = -1
-default species = ""
-default habitat = ""
-default name_index = 0
-default patient = Character(name = "placeholder", color = "#ffffff")
 
 label start:
-    #these automatically account for different list sizes so do NOT change
-    label generate_patient:
-        if (patient_index == -1):
-            $ patient_index = renpy.random.randint(0, len (species_list) - 1)
-            $ species = species_list [patient_index]
-            $ habitat = habitat_list [patient_index]
-            $ name_index = renpy.random.randint(0, len (name_list) - 1)
-            $ patient = Character(name = name_list [name_index], color = "#ffffff")
-
-        jump patient_entry
+    #Patient generation is done separately to clean up code :)
+    jump generate_patient
 
     label patient_entry:
 
@@ -119,6 +93,42 @@ label start:
                         scene habitat_sprite
                         show patient_happy
                         patient "Perfect! This is what I needed!"
+
+        "Now, what seems to be the problem?"
+
+        show patient_confused
+        patient "Well, I seem to have a [illness]."
+
+        show patient_neutral
+
+        label illness_diagnosis:
+            show patient_neutral
+            menu:
+                "Hm... is that a normal symptom for [patient.name] to be experiencing?"
+
+                "Yes!":
+                    if actualCondition != True:
+                        show patient_confused
+                        patient "Are you sure?"
+                        jump illness_diagnosis
+
+                    else:
+                        scene habitat_sprite
+                        show patient_happy
+                        patient "Oh! That's good news!"
+
+                "No!":
+                    if actualCondition != False:
+                        show patient_confused
+                        patient "Really? That doesn't sound right."
+                        jump illness_diagnosis
+
+                    else:
+                        scene habitat_sprite
+                        show patient_happy
+                        patient "Huh. Weird. Okay, thanks for telling me!"
+                        $ patient_index = -1
+                        jump generate_patient
 
     # This ends the game.
 
