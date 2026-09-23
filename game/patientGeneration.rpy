@@ -24,7 +24,7 @@ init python:
 #Add more names and species as you like, as long as you follow the
 #array conventions + each species being paired with its own habitat
 #AND ALSO ADD AN APPROPRIATE IMAGE SET TO THE IMAGES FOLDER THANKS
-define name_list = ["Bob", "Jessica", "Maria", "Shadow"]
+define name_list = ["Bob", "Jessica", "Maria", "Shadow", "Pink", "Cookie"]
 
 #use "none" in habitat to mark as nonliving please and thank you :)
 # list of species

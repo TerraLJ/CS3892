@@ -11,7 +11,7 @@ label start:
         # add a file (named either "bg room.png" or "bg room.jpg") to the
         # images directory to show it.
 
-        scene office with dissolve
+        scene office with fade
 
         # This shows a character sprite. A placeholder is used, but you can
         # replace it by adding a file named "eileen happy.png" to the images
@@ -63,7 +63,7 @@ label start:
                         jump incorrect_room
 
                     else:
-                        scene habitat_sprite with dissolve
+                        scene habitat_sprite with fade
                         show patient_happy
                         patient "This is perfect, thank you!"
 
@@ -72,7 +72,7 @@ label start:
                         jump incorrect_room
 
                     else:
-                        scene habitat_sprite with dissolve
+                        scene habitat_sprite with fade
                         show patient_happy
                         patient "Oh yeah! I like it here."
 
@@ -81,7 +81,7 @@ label start:
                         jump incorrect_room
 
                     else:
-                        scene habitat_sprite with dissolve
+                        scene habitat_sprite with fade
                         show patient_happy
                         patient "It's so chilly here, just how I like it!"
 
@@ -90,7 +90,7 @@ label start:
                         jump incorrect_room
 
                     else:
-                        scene habitat_sprite with dissolve
+                        scene habitat_sprite with fade
                         show patient_happy
                         patient "Perfect! This is what I needed!"
 
@@ -111,7 +111,6 @@ label start:
                         jump illness_diagnosis
 
                     else:
-                        scene habitat_sprite
                         show patient_happy
                         patient "Oh! That's good news!"
 
@@ -122,7 +121,6 @@ label start:
                         jump illness_diagnosis
 
                     else:
-                        scene habitat_sprite
                         show patient_happy
                         patient "Huh. Weird. Okay, thanks for telling me!"
                         $ patient_index = -1
@@ -198,6 +196,8 @@ label start:
                         show patient_happy
                         patient "Yay! Thank you!"
 
+            $ patient_index = -1
+            scene black with dissolve
             jump generate_patient
                 
 
