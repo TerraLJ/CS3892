@@ -46,10 +46,9 @@ define illness_list = [
     Illnesses ("generic", True, "scrape", "bandages"),
     Illnesses ("generic", True, "itchy nose", "allergy medicine"),
     Illnesses ("generic", False, "clown nose", "none"),
-    Illnesses ("hedgehog", True, "loose quill", "TBD"),
+    Illnesses ("generic", False, "haunted amulet", "none"),
     Illnesses ("cheetah", True, "piece of food stuck in my teeth", "toothpicks"),
-    Illnesses ("polarbear", True, "something", "TBD"),
-    Illnesses ("parrot", True, "injured wing", "TBD")
+    Illnesses ("parrot", True, "injured wing", "splints")
     ]
 
 #Patient generation. setting up generic variables do NOT touch

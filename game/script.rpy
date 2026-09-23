@@ -123,6 +123,7 @@ label start:
                     else:
                         show patient_happy
                         patient "Huh. Weird. Okay, thanks for telling me!"
+                        scene black with dissolve
                         $ patient_index = -1
                         jump generate_patient
 
