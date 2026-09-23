@@ -91,6 +91,10 @@ define config.after_load_transition = None
 
 define config.end_game_transition = None
 
+init python:
+    _game_menu_screen = "preferences"
+    config.quit_action = Quit(confirm=False)
+
 
 ## A variable to set the transition used when the game starts does not exist.
 ## Instead, use a with statement after showing the initial scene.
@@ -143,7 +147,8 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "CS3892-1789946266"
+define config.save = False
+#define config.save_directory = "CS3892-1789946266"
 
 
 ## Icon ########################################################################
