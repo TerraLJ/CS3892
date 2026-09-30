@@ -10,3 +10,6 @@ Also! If you want to change the images, just save a new image with the same name
 Recommendation for backgrounds to be 1920 x 1080. Again, consistency isn't strictly necessary but it would be nice
 
 You can change the text too btw. If you don't like my writing style feel free to give the animals more personality!
+
+https://drive.google.com/file/d/1gbOT_QyCfyGTiqwiFgmoxUz42SJ7oyu0/view?usp=sharing
+^^ should be the working game file (version 1)
